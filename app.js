@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 // Route to handle form submission
 app.post('/send', (req, res) => {
-    const { name, phone, age, email, VolunteerHours, department } = req.body;
+    const { name, email, subject, message } = req.body;
 
     // Create a transporter
     const transporter = nodemailer.createTransport({
@@ -39,8 +39,8 @@ app.post('/send', (req, res) => {
     const mailOptions = {
         from: process.env.EMAIL, // Your email address from .env
         to: 'familyunitednetwork2024@gmail.com',
-        subject: 'Volunteer Contact Form',
-        text: `Name: ${name}\nPhone: ${phone}\nAge: ${age}\nEmail: ${email}\nHours Per Week: ${VolunteerHours}\nDepartment: ${department}`
+        subject: 'Contact Form',
+        text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`
     };
 
     // Send email
