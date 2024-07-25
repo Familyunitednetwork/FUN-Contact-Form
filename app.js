@@ -28,17 +28,19 @@ app.post('/send', (req, res) => {
 
     // Create a transporter
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        secure: false, // true for 465, false for other ports
         auth: {
-            user: process.env.EMAIL, // Your Gmail address
-            pass: process.env.PASSWORD // Your Gmail app password
+            user: process.env.EMAIL, // Your Hostinger email address
+            pass: process.env.PASSWORD // Your Hostinger email password
         }
     });
 
     // Email options
     const mailOptions = {
         from: process.env.EMAIL, // Your email address from .env
-        to: 'familyunitednetwork2024@gmail.com',
+        to: 'info@fun-canada.com',
         subject: 'Contact Form',
         text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`
     };
